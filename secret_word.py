@@ -3,33 +3,95 @@
 # print(r.get_random_word())
 import random
 
-r = RandomWords(WORDS)
+
+print("Ready to play Secret word?!")
+print("-----------------------------")
+
 
 word_file = "/usr/share/dict/words"
 WORDS = open(word_file).read().splitlines()
 
-print(random.choice(WORDS))
+# RandomWords(WORDS)j
 
-print("Ready to play Secret word?!")
-print("----/////////---------//////////-------/////////------//////////----")
+random_word = random.choice(WORDS)
 
 
-# def hangman(secretWord):
-#     '''
-#     secretWord: string, the secret word to guess.
+def testing(x):
+    wrong = 0
+    print(random_word)
+    if x in random_word:
+        print("word is there")
+    else:
+        print(wrong)
+        wrong = wrong + 1
+        print(wrong)
+        print("word is not there")
 
-#     Starts up an interactive game of Hangman.
 
-#     * At the start of the game, let the user know how many
-#       letters the secretWord contains.
+testing("z")
 
-#     * Ask the user to supply one guess (i.e. letter) per round.
 
-#     * The user should receive feedback immediately after each guess
-#       about whether their guess appears in the secret word.
+def print_hangman(wrong):
+    if (wrong == 0):
+        print("\n+----+")
+        print("    |")
+        print("    |")
+        print("    |")
+        print("    |")
+        print("   ===")
+    elif (wrong == 1):
+        print("\n+----+")
+        print("O   |")
+        print("    |")
+        print("    |")
+        print("    |")
+        print("   ===")
+    elif (wrong == 2):
+        print("\n+----+")
+        print(" O  |")
+        print(" |  |")
+        print("    |")
+        print("    |")
+        print("   ===")
+    elif (wrong == 3):
+        print("\n+----+")
+        print(" 0  |")
+        print("/|  |")
+        print("    |")
+        print("    |")
+        print("   ===")
+    elif (wrong == 4):
+        print("\n+----+")
+        print(" 0  |")
+        print("/|\ |")
+        print("    |")
+        print("    |")
+        print("   ===")
+    elif (wrong == 5):
+        print("\n+----+")
+        print(" 0  |")
+        print("/|\ |")
+        print(" |  |")
+        print("    |")
+        print("   ===")
+    elif (wrong == 6):
+        print("\n+----+")
+        print(" O  |")
+        print("/|\ |")
+        print(" |  |")
+        print("/   |")
+    elif (wrong == 7):
+        print("\n+----+")
+        print(" O  |")
+        print("/|\ |")
+        print(" |  |")
+        print("/ \ |")
+        print("   ===")
 
-#     * After each round, you should also display to the user the
-#       partially guessed word so far, as well as letters that the
-#       user has not yet guessed.
-#   '''
-#   pass
+
+print_hangman(0)
+
+
+def print_word(guess_letters):
+    counter = 0
+    correct_letters = 0
