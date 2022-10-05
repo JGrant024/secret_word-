@@ -1,3 +1,19 @@
+# from random_word import RandomWords
+# r = RandomWords()
+# print(r.get_random_word())
+import random
+
+r = RandomWords(WORDS)
+
+word_file = "/usr/share/dict/words"
+WORDS = open(word_file).read().splitlines()
+
+print(random.choice(WORDS))
+
+print("Ready to play Secret word?!")
+print("----/////////---------//////////-------/////////------//////////----")
+
+
 # def hangman(secretWord):
 #     '''
 #     secretWord: string, the secret word to guess.
