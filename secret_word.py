@@ -11,14 +11,18 @@ print("-----------------------------")
 word_file = "/usr/share/dict/words"
 WORDS = open(word_file).read().splitlines()
 
-# RandomWords(WORDS)j
+# RandomWords(WORDS)
 
 random_word = random.choice(WORDS)
 
 
-def testing(x):
+def game(x):
     wrong = 0
-    print(random_word)
+    # while not guessed and incorrect_guesses < 6:
+
+    guessed_letter = input('Enter a letter')
+    print(guessed_letter)
+
     if x in random_word:
         print("word is there")
     else:
@@ -28,7 +32,7 @@ def testing(x):
         print("word is not there")
 
 
-testing("z")
+game("z")
 
 
 def print_hangman(wrong):
