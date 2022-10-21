@@ -1,110 +1,44 @@
-from words import words 
-import random 
-
-
+from words import words
+import random
+from random import choice
 
 print("Ready to play Secret word?!")
 print("-----------------------------")
 
+words = ["About", "Audio", "Aware", "Aside", "Badly", "Black", "Birth", "Blame", "Baker", "Blood", "Cover", "China", "Civil", "Crash", "Brain", "Carry", "Claim", "Cream", "Brand", "Catch", "Class", "Crime", "Codes", "Curve", "Cycle", "Guess", "Fruit", "Heavy", "Funny", "Night", "Grant", "Grand", "Giant", "Horse", "House",
+         "Human", "Image", "Irony", "Juice", "Newly", "Media", "Might", "Nurse", "Occur", "Wound", "Water", "Yield", "Young", "Worth", "Voice"]
+word = choice(words)     # randomly chooses a word from words list
+guessed, chances, game_ends = [], 5, False  # multi variable assignment
 
+# create a list of underscores to the length of the word
+guesses = ["_"] * len(word)
 
+# create a main loop
+while not game_ends:
+    hidden_word = "".join(guesses)
+    print("Your guessed letters: {}".format(guessed))
+    print("Word to guess: {}".format(hidden_word))
+    print("Lives: {}".format(chances))
+    ans = input("Type quit or guess a letter: ").lower()
 
-# RandomWords(WORDS)
-
-
-
-
-def print_hangman(wrong):
-    if (wrong == 0):
-        print("\n+----+")
-        print("    |")
-        print("    |")
-        print("    |")
-        print("    |")
-        print("   ===")
-    elif (wrong == 1):
-        print("\n+----+")
-        print("O   |")
-        print("    |")
-        print("    |")
-        print("    |")
-        print("   ===")
-    elif (wrong == 2):
-        print("\n+----+")
-        print(" O  |")
-        print(" |  |")
-        print("    |")
-        print("    |")
-        print("   ===")
-    elif (wrong == 3):
-        print("\n+----+")
-        print(" 0  |")
-        print("/|  |")
-        print("    |")
-        print("    |")
-        print("   ===")
-    elif (wrong == 4):
-        print("\n+----+")
-        print(" 0  |")
-        print("/|\ |")
-        print("    |")
-        print("    |")
-        print("   ===")
-    elif (wrong == 5):
-        print("\n+----+")
-        print(" 0  |")
-        print("/|\ |")
-        print(" |  |")
-        print("    |")
-        print("   ===")
-    elif (wrong == 6):
-        print("\n+----+")
-        print(" O  |")
-        print("/|\ |")
-        print(" |  |")
-        print("/   |")
-    elif (wrong == 7):
-        print("\n+----+")
-        print(" O  |")
-        print("/|\ |")
-        print(" |  |")
-        print("/ \ |")
-        print("   ===")
-
-
-def game(x):
-    wrong = 0
-    # while not guessed and incorrect_guesses < 6:
-
-    guessed_letter = input('Enter a letter\n')
-    print(guessed_letter)
-
-    if x in random_word:
-        print("word is there")
-        print_hangman(wrong)
+    if ans == "quit":
+        print("Thanks for playing.")
+        game_over = True
+    elif ans in word and ans not in guessed:
+        print("You guessed correctly!")
+        for i in range(len(word)):
+            if word[i] == ans:
+                guesses[i] = ans
+    elif ans in guessed:
+        print("You already guessed that. Try again")
     else:
-        print(wrong)
-        wrong = wrong + 1
-        print("word is not there")
-        print_hangman(wrong)
-
-
-num_of_guesses = 6
-guessed_corretly = False
-
-# start of while loop
-while num_of_guesses < 6 and not guessed_corretly:
-    # get guess from player
-    guess = input('Enter a 5 letter word and press enter: ')
-    print('You have guessed', guess)
-    num_of_guesses += 1
-
-    guessed_corretly = num_of_guesses(guessed_corretly)
-
-
-game("x")
-
-
-def print_word(guess_letters):
-    counter = 0
-    correct_letters = 0
+        chances = -1
+        print("Incorrect, you lost a chance")
+    if ans not in guessed:
+        guessed.append(ans)
+    elif chances <= 0:
+        print("You lost all your lives! The word was " + word)
+        game_ends = True
+    elif word == "".join(guesses):
+        print("Congratulations, you guessed it correctly!")
+        game_ends = True
