@@ -1,38 +1,17 @@
-# from random_word import RandomWords
-# r = RandomWords()
-# print(r.get_random_word())
-import random
+from words import words 
+import random 
+
 
 
 print("Ready to play Secret word?!")
 print("-----------------------------")
 
 
-word_file = "/usr/share/dict/words"
-WORDS = open(word_file).read().splitlines()
+
 
 # RandomWords(WORDS)
 
-random_word = random.choice(WORDS)
 
-
-def game(x):
-    wrong = 0
-    # while not guessed and incorrect_guesses < 6:
-
-    guessed_letter = input('Enter a letter')
-    print(guessed_letter)
-
-    if x in random_word:
-        print("word is there")
-    else:
-        print(wrong)
-        wrong = wrong + 1
-        print(wrong)
-        print("word is not there")
-
-
-game("z")
 
 
 def print_hangman(wrong):
@@ -93,7 +72,37 @@ def print_hangman(wrong):
         print("   ===")
 
 
-print_hangman(0)
+def game(x):
+    wrong = 0
+    # while not guessed and incorrect_guesses < 6:
+
+    guessed_letter = input('Enter a letter\n')
+    print(guessed_letter)
+
+    if x in random_word:
+        print("word is there")
+        print_hangman(wrong)
+    else:
+        print(wrong)
+        wrong = wrong + 1
+        print("word is not there")
+        print_hangman(wrong)
+
+
+num_of_guesses = 6
+guessed_corretly = False
+
+# start of while loop
+while num_of_guesses < 6 and not guessed_corretly:
+    # get guess from player
+    guess = input('Enter a 5 letter word and press enter: ')
+    print('You have guessed', guess)
+    num_of_guesses += 1
+
+    guessed_corretly = num_of_guesses(guessed_corretly)
+
+
+game("x")
 
 
 def print_word(guess_letters):
